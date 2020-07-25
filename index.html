@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Data</title>
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+</head>
+
+<body>
+<section class="card">
+    <header class="card-header">
+        <h3>Employee Data</h3>
+    </header>
+
+    <form class="card-body">
+        <div class="row form-group justify-content-around">
+            <div class="col-sm-4">
+                <label class="font-weight-bold col-12 text-center">Employee Identifier</label>
+                <input type="number" class="form-control" required>
+            </div>
+            <div class="col-sm-4">
+                <label class="font-weight-bold col-12 text-center">Email</label>
+                <input type="email" class="form-control" required>
+            </div>
+        </div>
+
+
+        <div class="form-check">
+            <label>
+                <input class="form-check-input" name="gender" type="radio" value="female" required>
+                Female
+            </label>
+        </div>
+        <div class="form-check">
+            <label>
+                <input class="form-check-input" name="gender" type="radio" value="male" required>
+                Male
+            </label>
+        </div>
+
+
+        <div class="row form-group justify-content-around mt-4">
+            <div class="col-sm-3">
+                <label class="font-weight-bold col-12 text-center">Employee's Name</label>
+                <input type="text" class="form-control" required>
+            </div>
+            <div class="col-sm-3">
+                <label class="font-weight-bold col-12 text-center">Salary</label>
+                <input type="text" class="form-control" required>
+            </div>
+
+            <div class="col-sm-3">
+                <label class="font-weight-bold col-12 text-center">Title</label>
+                <select class="form-control" name="title">
+                    <option value="wageemployee">WageEmployee</option>
+                    <option value="manager">Manager</option>
+                    <option value="salesperson">SalesPerson</option>
+                    <option value="salesmanager">SalesManager</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-primary">Reset</button>
+    </form>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+
+.control-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    margin: 10px;
+}
+
+.control-buttons button {
+    width: 15em;
+}
+

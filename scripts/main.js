@@ -34,14 +34,16 @@ randomHandler.addHandler(function(object) {
         return 'Maximal value is less then minimal value';
     }
 
-    for (let i = 0; i < object.countEmployees; i++) {
+    for (let i = 0; i < +object.countEmployees; i++) {
         const employee = random.createRandomEmployee(object.countIdDigits, +object.minSalary, +object.maxSalary);
         const result = employees.addEmployee(employee);
 
         if(result) {
             table.addRow(employee);
+            console.log(i);     //debug
         } else {
-            return `Employee with id: ${employee.id} already exists`;
+            i--;
+            continue;
         }
     }
 })

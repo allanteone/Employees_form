@@ -6,7 +6,7 @@ class Employees {
 
     addEmployee(employee) {
         if (this.employees.findIndex(function(o) {
-            return o.id === employee.id;
+            return o.id == employee.id;
         }) !== -1) {
             return false;
         }

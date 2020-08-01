@@ -40,7 +40,7 @@ class Random {
     getRandomId(idDigitsCount) {
         let id = this.getRandomNumber(1, 9);
 
-        for (let i = 1; i < idDigitsCount; i++) {
+        for (let i = 1; i < +idDigitsCount; i++) {
             id *= 10;
             id += this.getRandomNumber(1, 9);
         }

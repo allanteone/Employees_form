@@ -7,10 +7,11 @@ class FormHandler {
     addHandler(dataFn) {
         this.$formElement.on('submit', function (event) {
             event.preventDefault();
-            const dataObj = {};
-            this.$formElement.serializeArray().forEach(function (obj) {
-                dataObj[obj.name] = obj.value;
-            });
+
+            const dataObj = this.$formElement.serializeArray().reduce(function(res, obj) {
+                res[obj.name] = obj.value;
+                return res;
+            }, {});
 
             const message = dataFn(dataObj);
             if (message) {

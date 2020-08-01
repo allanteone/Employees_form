@@ -9,13 +9,14 @@
 
 <body>
 
-<section class="control-buttons">
-    <button class="form-control" onclick="showPage('card')">Add New Employee</button>
-    <button class="form-control" onclick="showPage('generation-form')">Employees Generation</button>
-    <button class="form-control" onclick="showPage('table')">Show Employees</button>
-</section>
-
-<section class="card" >
+    <section class="control-buttons">
+        <button class="form-control" onclick="showPage('card')">Add New Employee</button>
+        <button class="form-control" onclick="showPage('generation-form')">Employees Generation</button>
+        <button class="form-control" onclick="showPage('table')">Show Employees</button>
+        <button class="form-control" onclick="showPage('statistics')">Show Salary Statistics</button>
+    </section>
+<div class="content">
+        <section class="card" >
         <header class="card-header">
             <h3>Employee Data</h3>
         </header>
@@ -33,13 +34,13 @@
 
 
             <div class="form-check">
-                <label>
+                <label class="font-weight-bold">
                     <input class="form-check-input" name="gender" type="radio" value="female" required>
                     Female
                 </label>
             </div>
             <div class="form-check">
-                <label>
+                <label class="font-weight-bold">
                     <input class="form-check-input" name="gender" type="radio" value="male" required>
                     Male
                 </label>
@@ -47,7 +48,7 @@
 
 
             <div class="row form-group justify-content-around mt-4">
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <label class="font-weight-bold col-12 text-center">Employee's Name</label>
                     <input type="text" name="name" class="form-control" required>
                 </div>
@@ -58,72 +59,94 @@
 
                 <div class="col-sm-3">
                     <label class="font-weight-bold col-12 text-center">Title</label>
-                    <select class="form-control" name="title">
-                        <option value="wagemployee">Wage Employee</option>
-                        <option value="manager">Manager</option>
-                        <option value="salesperson">Sales Person</option>
-                        <option value="salesmanager">Sales Manager</option>
+                    <select class="form-control font-weight-bold" name="title">
+                        <option value="Wage Employee">Wage Employee</option>
+                        <option value="Manager">Manager</option>
+                        <option value="Sales Person">Sales Person</option>
+                        <option value="Sales Manager">Sales Manager</option>
                     </select>
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="reset" class="btn btn-primary">Reset</button>
-        </form>
-</section>
+            <div class="buttons-adding">
+                <button type="submit" class="btn btn-outline-secondary font-weight-bold">Submit</button>
+                <button type="reset" class="btn btn-outline-secondary font-weight-bold">Reset</button>
+            </div>
 
-<section class="generation-form" hidden>
-    <header class="card-header">
+        </form>
+    </section>
+
+        <section class="card generation-form" hidden>
+        <header class="card-header">
             <h3>Employees Generation Data</h3>
         </header>
 
-    <form class="card-body" id="random-generation">
-        <div class="row form-group mt-4">
-            <div class="col-2 offset-md-3">
-                <label class="font-weight-bold col-12 text-center">Number of Employees</label>
-                <input type="number" name="countEmployees" class="form-control" required>
+        <form class="card-body" id="random-generation">
+            <div class="row form-group mt-5">
+                <div class="col-5 offset-md-1">
+                    <label class="font-weight-bold col-12 text-center">Number of Employees</label>
+                    <input type="number" name="countEmployees" class="form-control" required>
+                </div>
+                <div class="col-5">
+                    <label class="font-weight-bold col-12 text-center">Number of ID digits</label>
+                    <input type="number" name="countIdDigits" class="form-control" required>
+                </div>
             </div>
-            <div class="col-2 offset-md-2">
-                <label class="font-weight-bold col-12 text-center">Number of ID digits</label>
-                <input type="number" name="countIdDigits" class="form-control" required>
+            <div class="row form-group mt-5">
+                <div class="col-5  offset-1">
+                    <label class="font-weight-bold col-12 text-center">Minimal salary</label>
+                    <input type="number" name="minSalary" class="form-control" required>
+                </div>
+                <div class="col-5">
+                    <label class="font-weight-bold col-12 text-center">Maximal Salary</label>
+                    <input type="number" name="maxSalary" class="form-control" required>
+                </div>
             </div>
-        </div>
-        <div class="row form-group mt-4">
-            <div class="col-2  offset-3">
-                <label class="font-weight-bold col-12 text-center">Minimal salary</label>
-                <input type="number" name="minSalary" class="form-control" required>
+
+            <div class="buttons-generation">
+                <button type="submit" class="btn btn-outline-secondary font-weight-bold">Submit</button>
+                <button type="reset" class="btn btn-outline-secondary font-weight-bold">Reset</button>
             </div>
-            <div class="col-2 offset-md-2">
-                <label class="font-weight-bold col-12 text-center">Maximal Salary</label>
-                <input type="number" name="maxSalary" class="form-control" required>
-            </div>
-        </div>
+        </form>
+    </section>
 
-        <div class="m-4">
-            <button type="submit" class="btn btn-outline-secondary">Submit</button>
-            <button type="reset" class="btn btn-primary">Reset</button>
-        </div>
-    </form>
-</section>
+        <section class="card table" hidden>
+        <header class="card-header">
+            <h3>Employees Table</h3>
+        </header>
 
-<section class="table" hidden>
-    <header class="card-header">
-        <h3>Employees Table</h3>
-    </header>
+        <table class="table">
+            <thead>
+            <tr id="table-header-row">
 
-    <table class="table">
-        <thead>
-        <tr id="table-header-row">
+            </tr>
+            </thead>
 
-        </tr>
-        </thead>
+            <tbody id="table-body">
 
-        <tbody id="table-body">
+            </tbody>
+        </table>
+    </section>
 
-        </tbody>
-    </table>
-</section>
+        <section class="card statistics" hidden>
+        <header class="card-header">
+            <h3>Salary Statistics</h3>
+        </header>
 
+        <table class="table">
+            <thead>
+            <tr id="statistics-header-row">
+
+            </tr>
+            </thead>
+
+            <tbody id="statistics-body">
+
+            </tbody>
+        </table>
+
+    </section>
+</div>
 
 
 <script src="scripts/jquery.min.js"></script>

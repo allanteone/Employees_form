@@ -26,4 +26,15 @@ class Employees {
         this.employees.splice(index, 1);
         return true;
     }
+
+
+    getAllEmployees() {
+        return this.employees;
+    }
+
+
+
+
+
 }
+

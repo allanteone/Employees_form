@@ -1,5 +1,4 @@
 
-
 function addHeader(headerSelector, keys, removeFn) {
     const $headerSelector = $(headerSelector);
 
@@ -9,9 +8,8 @@ function addHeader(headerSelector, keys, removeFn) {
         });
     });
 
-    $thElements.forEach(function ($thElement) {
-        $headerSelector.append($thElement);
-    });
+    $headerSelector.append($thElements);
+
     if (removeFn) {
         $headerSelector.append($('<th>'));
     }
@@ -25,6 +23,7 @@ class Table {
         this.$bodyElement = $(bodyElement);
         this.id = id;
         this.removeFn = removeFn;
+        this.keys = keys;
 
         addHeader(headerElement, keys, removeFn);
     }
@@ -35,12 +34,12 @@ class Table {
         const $tableRowElement = $('<tr>');
         this.$bodyElement.append($tableRowElement);
 
-        Object.keys(object).forEach(function (key) {
-            const $tableCellElement = $('<td>', {
+        const $tdElements = this.keys.map(function (key) {
+            return $('<td>', {
                 text: object[key]
-            });
-            $tableRowElement.append($tableCellElement);
+            })
         });
+        $tableRowElement.append($tdElements);
 
         if (this.removeFn) {
             const $deleteElement = $('<td><svg width="0.7em" height="0.7em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">\n' +
@@ -55,7 +54,7 @@ class Table {
                 if (confirm('you are going remove employee: ' + object[this.id])) {
                     this.removeFn(object[this.id]);
 
-                    $tableRowElement.empty();
+                    $tableRowElement.remove();
                 }
             }.bind(this))
         }

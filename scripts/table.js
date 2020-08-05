@@ -1,5 +1,5 @@
 
-const addHeader = (headerSelector, keys, removeFn) => {
+const addHeader = (headerSelector, keys, removeData) => {
     const $headerSelector = $(headerSelector);
 
     const $thElements = keys.map(function (key) {
@@ -27,7 +27,8 @@ class Table {
         this.removeData = removeData ? removeData.confirmMessage : null;
         this.keys = Object.keys(headersKeys);
 
-        addHeader(headerElement, Object.values(headersKeys), this.removeFn);
+        addHeader(headerElement, Object.values(headersKeys), this.removeData);
+
     }
 
 

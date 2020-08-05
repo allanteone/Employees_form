@@ -5,10 +5,10 @@ class FormHandler {
     }
 
     addHandler(dataFn) {
-        this.$formElement.on('submit', function (event) {
+        this.$formElement.on('submit', event => {
             event.preventDefault();
 
-            const dataObj = this.$formElement.serializeArray().reduce(function(res, obj) {
+            const dataObj = this.$formElement.serializeArray().reduce((res, obj) => {
                 res[obj.name] = obj.value;
                 return res;
             }, {});
@@ -19,6 +19,6 @@ class FormHandler {
             } else {
                 event.target.reset();
             }
-        }.bind(this));
+        });
     }
 }

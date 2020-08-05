@@ -5,9 +5,7 @@ class Employees {
     }
 
     addEmployee(employee) {
-        if (this.employees.findIndex(function(o) {
-            return o.id == employee.id;
-        }) !== -1) {
+        if (this.employees.findIndex(o => o.id === employee.id) !== -1) {
             return false;
         }
         this.employees.push(employee);
@@ -16,9 +14,7 @@ class Employees {
 
 
     removeEmployee(id) {
-        const index = this.employees.findIndex(function (employee) {
-            return employee.id === id;
-        });
+        const index = this.employees.findIndex(employee => employee.id === id);
 
         if (index < 0) {
             return false;
@@ -31,10 +27,5 @@ class Employees {
     getAllEmployees() {
         return this.employees;
     }
-
-
-
-
-
 }
 

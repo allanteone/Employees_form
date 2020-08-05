@@ -38,6 +38,7 @@ tbody {
     display: block;
     height: 380px;
     overflow-y: auto;
+    scrollbar-width: thin;
 }
 thead, tbody tr {
     display: table;
@@ -56,7 +57,19 @@ td, th, tr {
     border-width: 1px;
 }
 
+table ::-webkit-scrollbar {
+    width: 10px;
+    background-color: white;
+}
 
+table ::-webkit-scrollbar-thumb {
+    background-color: silver;
+}
 
+.delete-icon {
+    width: 40px;
+}
 
-
+.header-delete-icon {
+    width: 50px;
+}

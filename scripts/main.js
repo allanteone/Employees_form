@@ -1,24 +1,55 @@
 
-const formHandler = new FormHandler('#form-orders');
+const addFormHandler = new FormHandler('#form-orders');
 const randomHandler = new FormHandler('#random-generation')
 const employees = new Employees();
 const random = new Random();
+
+
+const removeData = {
+    id: 'id',
+    removeFn: function(id) {
+        employees.removeEmployee(id);
+        showStatistics(employees);
+    },
+    confirmMessage: 'employee with id'
+}
+const headerKeys = {
+    id: 'ID',
+    email: 'E-mail address',
+    gender: 'Gender',
+    name: 'Name',
+    salary: 'Salary',
+    title: 'Title'
+}
+const headerSalaryStatistics = {
+    minSalary: 'Minimal salary',
+    avgSalary: 'Average salary',
+    maxSalary: 'Maximal salary',
+    totalSalary: 'Total salary'
+}
+const headerTitleStatistics = {
+    title: 'Title',
+    count: 'Count'
+}
+
 const table = new Table('#table-header-row', '#table-body',
-    ['id', 'email', 'gender', 'name', 'salary', 'title'], 'id',
-    function(id) {
-    employees.removeEmployee(id);
-    });
+    headerKeys, removeData);
 
-const statistics = new Table('#statistics-header-row', '#statistics-body',
-    ['minSalary', 'avgSalary', 'maxSalary', 'totalSalary'], 'id');
+const salaryStatistics = new Table('#salary-statistics-header-row', '#salary-statistics-body',
+    headerSalaryStatistics);
+
+const titleStatistics = new Table('#title-statistics-header-row','#title-statistics-body',
+    headerTitleStatistics);
 
 
 
-formHandler.addHandler(function (employee) {
+addFormHandler.addHandler((employee) => {
+    employee['id'] = +employee['id'];
     const result = employees.addEmployee(employee);
 
     if(result) {
         table.addRow(employee);
+        showStatistics(employees);
     }
 
     return result ? '' : `Employee with id: ${employee.id} already exists`;
@@ -26,7 +57,7 @@ formHandler.addHandler(function (employee) {
 
 
 
-randomHandler.addHandler(function(object) {
+randomHandler.addHandler((object) => {
     if (+object.countEmployees < 1 || +object.countEmployees > 99) {
         return 'Wrong number of employees';
     }
@@ -43,7 +74,7 @@ randomHandler.addHandler(function(object) {
 
         if(result) {
             table.addRow(employee);
-            console.log(i);     //debug
+            showStatistics(employees);
         } else {
             i--;
             continue;
@@ -53,74 +84,24 @@ randomHandler.addHandler(function(object) {
 
 
 
-function getStatistics(employees) {
-    const result = {};
 
-    result.totalSalary = getTotalSalary(employees);
-    result.avgSalary = getAvgSalary(employees);
-    result.maxSalary = getMaxSalary(employees);
-    result.minSalary = getMinSalary(employees);
-
-    return result;
-}
-
-function getTotalSalary(employees) {
-    return employees.reduce(function (sum, current) {
-        return sum + Number(current.salary);
-    }, 0);
-}
-
-function getAvgSalary(employees) {
-    let average = getTotalSalary(employees) / employees.length;
-
-    return Math.round(average * 100) / 100;
-}
-
-function getMaxSalary(employees) {
-    let maxSalary = 0;
-
-    employees.forEach(function (employee) {
-        if (maxSalary < employee.salary) {
-            maxSalary = employee.salary;
-        }
-    });
-    return maxSalary;
-}
-
-function getMinSalary(employees) {
-    let minSalary = getMaxSalary(employees);
-
-    employees.forEach(function (employee) {
-        if (minSalary > employee.salary) {
-            minSalary = employee.salary
-        }
-    });
-    return minSalary;
-}
-
-
-
-
-
-function hideAll() {
+const hideAll = () => {
     document.querySelector('.card').hidden = true;
     document.querySelector('.generation-form').hidden = true;
     document.querySelector('.table').hidden = true;
-    document.querySelector('.statistics').hidden = true;
+    document.querySelector('.salary-statistics').hidden = true;
+    document.querySelector('.title-statistics').hidden = true;
 }
 
-function showPage(pageId) {
+const showPage = pageId => {
     hideAll();
 
     switch (pageId) {
         case 'card' : document.querySelector('.card').hidden = false; break;
         case 'generation-form' : document.querySelector('.generation-form').hidden = false; break;
         case 'table' : document.querySelector('.table').hidden = false; break;
-        case 'statistics' : {
-            document.querySelector('.statistics').hidden = false;
-            statistics.$bodyElement.empty();
-            statistics.addRow(getStatistics(employees.getAllEmployees()));
-        } break;
+        case 'salary-statistics' : document.querySelector('.salary-statistics').hidden = false; break;
+        case 'title-statistics' : document.querySelector('.title-statistics').hidden = false; break;
         default: console.log('wrong showPage()\'s switch');
     }
 }

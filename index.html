@@ -13,10 +13,11 @@
         <button class="form-control" onclick="showPage('card')">Add New Employee</button>
         <button class="form-control" onclick="showPage('generation-form')">Employees Generation</button>
         <button class="form-control" onclick="showPage('table')">Show Employees</button>
-        <button class="form-control" onclick="showPage('statistics')">Show Salary Statistics</button>
+        <button class="form-control" onclick="showPage('salary-statistics')">Show Salary Statistics</button>
+        <button class="form-control" onclick="showPage('title-statistics')">Show Title Statistics</button>
     </section>
 <div class="content">
-        <section class="card" >
+        <section class="card" hidden>
         <header class="card-header">
             <h3>Employee Data</h3>
         </header>
@@ -128,23 +129,41 @@
         </table>
     </section>
 
-        <section class="card statistics" hidden>
+        <section class="card salary-statistics" hidden>
         <header class="card-header">
             <h3>Salary Statistics</h3>
         </header>
 
         <table class="table">
             <thead>
-            <tr id="statistics-header-row">
+            <tr id="salary-statistics-header-row">
 
             </tr>
             </thead>
 
-            <tbody id="statistics-body">
+            <tbody id="salary-statistics-body">
 
             </tbody>
         </table>
 
+    </section>
+
+        <section class="card title-statistics" hidden>
+        <header class="card-header">
+            <h3>Title Statistics</h3>
+        </header>
+
+        <table class="table">
+            <thead>
+            <tr id="title-statistics-header-row">
+
+            </tr>
+            </thead>
+
+            <tbody id="title-statistics-body">
+
+            </tbody>
+        </table>
     </section>
 </div>
 
@@ -154,6 +173,7 @@
 <script src="scripts/employees.js"></script>
 <script src="scripts/table.js"></script>
 <script src="scripts/random.js"></script>
+    <script src="scripts/statistics.js"></script>
 <script src="scripts/main.js"></script>
 
 </body>
